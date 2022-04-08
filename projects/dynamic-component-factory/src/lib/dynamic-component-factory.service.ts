@@ -1,12 +1,12 @@
 import {
+    ApplicationRef,
+    ComponentFactory,
+    ComponentFactoryResolver,
+    EmbeddedViewRef,
     Injectable,
     Injector,
-    ApplicationRef,
-    ComponentFactoryResolver,
     Type,
-    EmbeddedViewRef,
-    ViewContainerRef,
-    ComponentFactory
+    ViewContainerRef
 } from '@angular/core';
 import { DynamicComponentFactoryInstance } from './dynamic-component-factory-instance';
 
@@ -31,7 +31,7 @@ export class DynamicComponentFactoryService {
 
     }
 
-    private createComponentFactory<T>(componentType: Type<T>): ComponentFactory<T> {
+    public createComponentFactory<T>(componentType: Type<T>): ComponentFactory<T> {
 
         this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentType);
 
@@ -39,7 +39,7 @@ export class DynamicComponentFactoryService {
 
     }
 
-    private createComponentInstance<T>(name: string | number, componentFactory: ComponentFactory<T>, destroy?: Function): DynamicComponentFactoryInstance<T> {
+    public createComponentInstance<T>(name: string | number, componentFactory: ComponentFactory<T>, destroy?: Function): DynamicComponentFactoryInstance<T> {
 
         const componentRef = componentFactory.create(this.injector);
 
@@ -70,7 +70,7 @@ export class DynamicComponentFactoryService {
 
         this.applicationRef.attachView(instance.componentRef.hostView);
 
-        document.body.appendChild((instance.componentRef.hostView as EmbeddedViewRef<T>).rootNodes[ 0 ]);
+        document.body.appendChild((instance.componentRef.hostView as EmbeddedViewRef<T>).rootNodes[0]);
 
         return instance;
 
@@ -82,7 +82,7 @@ export class DynamicComponentFactoryService {
 
         this.applicationRef.attachView(instance.componentRef.hostView);
 
-        document.getElementById(elementId).appendChild((instance.componentRef.hostView as EmbeddedViewRef<T>).rootNodes[ 0 ]);
+        document.getElementById(elementId).appendChild((instance.componentRef.hostView as EmbeddedViewRef<T>).rootNodes[0]);
 
         return instance;
 
