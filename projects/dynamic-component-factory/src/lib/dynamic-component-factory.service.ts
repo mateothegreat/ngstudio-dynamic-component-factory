@@ -94,7 +94,11 @@ export class DynamicComponentFactoryService {
 
         instance.viewContainerRef = viewContainerRef;
 
-        viewContainerRef.insert(instance.componentRef.hostView);
+        setTimeout(() => {
+
+            viewContainerRef.insert(instance.componentRef.hostView);
+
+        });
 
         return instance;
 

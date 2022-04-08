@@ -1,6 +1,6 @@
 {
     "name": "@ngstudio/dynamic-component-factory",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "peerDependencies": {
         "@angular/common": "^13.0.2",
         "@angular/core": "^13.0.2"
